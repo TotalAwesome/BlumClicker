@@ -49,7 +49,9 @@ class BlumClient(Session):
         default_est_time = 60
         if 'farming' in self.balance_data:
             est_time = (self.balance_data['farming']['endTime'] - self.balance_data['timestamp']) / 1000 + 1
-        return est_time if est_time > 0 else default_est_time
+            return est_time if est_time > 0 else default_est_time
+        else:
+            return default_est_time
 
     def me(self):
         result = self.get(URL_ME)
