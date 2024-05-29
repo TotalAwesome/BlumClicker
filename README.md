@@ -19,6 +19,7 @@ _Settings -> Advanced -> Experimental settings -> Enable WebView inspecting_
 3. На поверхности открывшегося приложения вызвать меню и выбрать `Inspect element`
 4. Далее как на скрине ниже переходим в network и ждем пока в списке запросов не появится `refresh` (может понадобиться время, пока текущий токен не просрочится)
 5. В ответе запроса будет то, что нам нужно. Содержимое скопировать в `token.json`
-6. Запустить скрипт `python3 main.py`
+6. `pip install -r requirements.txt`
+7. Запустить скрипт `python3 main.py`
 
 ![image](https://github.com/TotalAwesome/BlumClicker/assets/39047158/1acc5fbc-5e0b-430a-9f16-6e7e01d4f87b)
