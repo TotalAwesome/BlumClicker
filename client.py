@@ -118,6 +118,7 @@ class BlumClient(Session):
                         break
                     else:
                         sleep(1)
+                self.update_balance()
                 logging.info(result.text)
 
 
