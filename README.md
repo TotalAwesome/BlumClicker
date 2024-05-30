@@ -24,5 +24,12 @@ _Settings -> Advanced -> Experimental settings -> Enable WebView inspecting_
 
 ![image](https://github.com/TotalAwesome/BlumClicker/assets/39047158/1acc5fbc-5e0b-430a-9f16-6e7e01d4f87b)
 
+Для пользователей macOS включение отладки выглядит так:
+
+https://telegram.org/dl/macos/beta
+
+![image](https://github.com/TotalAwesome/BlumClicker/assets/39047158/9faf1a5d-430c-4acf-bbd6-389b31aa4b7a)
+
+
 Для донатов:
 USDT TRC20: TTTMM1PXxNS7d3tAcruamT6GE8ye5BrZ4w
