@@ -1,10 +1,10 @@
 import json
 import logging
 from time import sleep
+from random import randrange
 from requests import Session
 from settings import HEADERS, URL_REFRESH_TOKEN, URL_BALANCE, TOKEN_FILE, URL_ME, \
-      URL_FARMING_CLAIM, URL_FARMING_START, URL_PLAY_START, URL_PLAY_CLAIM, GAME_POINTS
-
+      URL_FARMING_CLAIM, URL_FARMING_START, URL_PLAY_START, URL_PLAY_CLAIM
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s [%(name)s]    %(message)s")
 
@@ -67,7 +67,6 @@ class BlumClient(Session):
         if response.status_code == 401:
             self.refresh_token()
             
-
     def refresh_token(self):
         if 'Authorization' in self.headers:
             del self.headers['Authorization']
@@ -79,7 +78,6 @@ class BlumClient(Session):
         self.headers['Authorization'] = "Bearer {}".format(self.auth_data.get('access'))
         with open(TOKEN_FILE, 'w') as tok_file:
             json.dump(self.auth_data, tok_file)
-   
 
     def update_balance(self):
         logging.info("Обновление баланса")
@@ -89,7 +87,6 @@ class BlumClient(Session):
             self.balance = self.balance_data['availableBalance']
             self.play_passes = self.balance_data['playPasses']
             logging.info(json.dumps(self.balance_data))
-    
     
     def start_farming(self):
         if 'farming' not in self.balance_data:
@@ -110,9 +107,10 @@ class BlumClient(Session):
             res = self.post(URL_PLAY_START)
             if res.status_code == 200:
                 data = res.json()
-                data['points'] = GAME_POINTS
+                data['points'] = game_points = randrange(150, 250)
                 sleep(23)  # Там вроде около 30 секунд, начинаем пробовать забрать награду чуть заранее
                 while True:
+                    logging.info(f"Отправка рандомного результата игры {game_points}")
                     result = self.post(URL_PLAY_CLAIM, json=data)
                     if result.status_code == 200:
                         break

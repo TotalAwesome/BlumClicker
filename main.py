@@ -1,4 +1,4 @@
-from client import BlumClient, sleep
+from client import BlumClient
 
 client = BlumClient()
 
