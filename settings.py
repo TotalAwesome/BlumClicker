@@ -5,6 +5,7 @@ URL_FARMING_CLAIM = "https://game-domain.blum.codes/api/v1/farming/claim"
 URL_FARMING_START = "https://game-domain.blum.codes/api/v1/farming/start"
 URL_PLAY_START = "https://game-domain.blum.codes/api/v1/game/play"
 URL_PLAY_CLAIM = "https://game-domain.blum.codes/api/v1/game/claim"
+URL_DAILY_REWARD = "https://game-domain.blum.codes/api/v1/daily-reward?offset=-180"
 
 HEADERS = {
     "Accept": 'application/json',

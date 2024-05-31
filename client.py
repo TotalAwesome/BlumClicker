@@ -4,7 +4,7 @@ from time import sleep
 from random import randrange
 from requests import Session
 from settings import HEADERS, URL_REFRESH_TOKEN, URL_BALANCE, TOKEN_FILE, URL_ME, \
-      URL_FARMING_CLAIM, URL_FARMING_START, URL_PLAY_START, URL_PLAY_CLAIM
+      URL_FARMING_CLAIM, URL_FARMING_START, URL_PLAY_START, URL_PLAY_CLAIM, URL_DAILY_REWARD
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s [%(name)s]    %(message)s")
 
@@ -119,4 +119,10 @@ class BlumClient(Session):
                 self.update_balance()
                 logging.info(result.text)
 
+    
+    def daily_reward(self):
+        result = self.get(URL_DAILY_REWARD)
+        if result.status_code == 200:
+            self.post(URL_DAILY_REWARD)
+            logging.info(f'Ежедневная награда! {result.text}')
 
