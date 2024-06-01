@@ -18,6 +18,8 @@
 
 _Settings -> Advanced -> Experimental settings -> Enable WebView inspecting_
 
+(python version = 3.11+)
+
 1. Переходим в бота https://t.me/BlumCryptoBot
 2. Нажимаем "`Launch Blum`"
 3. На поверхности открывшегося приложения вызвать меню и выбрать `Inspect element`
