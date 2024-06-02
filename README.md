@@ -28,7 +28,7 @@ _Settings -> Advanced -> Experimental settings -> Enable WebView inspecting_
 
 ![image](https://github.com/TotalAwesome/BlumClicker/assets/39047158/1acc5fbc-5e0b-430a-9f16-6e7e01d4f87b)
 
-Для macos и windows нужно скачать бета0версию настольного клиента.
+Для macos и windows нужно скачать бета-версию настольного клиента.
 
 Для пользователей macOS включение отладки выглядит так:
 
