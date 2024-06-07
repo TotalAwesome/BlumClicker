@@ -130,7 +130,7 @@ class BlumClient(Session):
     def friends_claim(self):
         friends_balance = self.get(URL_FRIENDS_BALANCE)
         if friends_balance.status_code == 200:
-            if friends_balance.get('canClaim'):
+            if friends_balance.json().get('canClaim'):
                 result = self.post(URL_FRIENDS_CLAIM)
                 if result.status_code == 200:
                     logging.info("Друзья нафармили: {}".format(result.json()['claimBalance']))
