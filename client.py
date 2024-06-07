@@ -4,7 +4,8 @@ from time import sleep
 from random import randrange
 from requests import Session
 from settings import HEADERS, URL_REFRESH_TOKEN, URL_BALANCE, TOKEN_FILE, URL_ME, \
-      URL_FARMING_CLAIM, URL_FARMING_START, URL_PLAY_START, URL_PLAY_CLAIM, URL_DAILY_REWARD
+      URL_FARMING_CLAIM, URL_FARMING_START, URL_PLAY_START, URL_PLAY_CLAIM, URL_DAILY_REWARD, \
+      URL_FRIENDS_BALANCE, URL_FRIENDS_CLAIM
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s [%(name)s]    %(message)s")
 
@@ -126,3 +127,10 @@ class BlumClient(Session):
             self.post(URL_DAILY_REWARD)
             logging.info(f'Ежедневная награда! {result.text}')
 
+    def friends_claim(self):
+        friends_balance = self.get(URL_FRIENDS_BALANCE)
+        if friends_balance.status_code == 200:
+            if friends_balance.get('canClaim'):
+                result = self.post(URL_FRIENDS_CLAIM)
+                if result.status_code == 200:
+                    logging.info("Друзья нафармили: {}".format(result.json()['claimBalance']))
