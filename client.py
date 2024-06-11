@@ -67,11 +67,10 @@ class BlumClient(Session):
         response = self.me()
         if response.status_code == 401:
             self.refresh_token()
-            
-    def refresh_token(self):
-        if 'Authorization' in self.headers:
-            del self.headers['Authorization']
-        response = self.post(URL_REFRESH_TOKEN, json={"refresh": self.auth_data.get("refresh")})
+        elif response.status_code == 200:
+            self.make_refresh()
+    
+    def dump_token(self, response):
         if response.status_code == 200:
             self.auth_data = response.json()
         else:
@@ -79,6 +78,16 @@ class BlumClient(Session):
         self.headers['Authorization'] = "Bearer {}".format(self.auth_data.get('access'))
         with open(TOKEN_FILE, 'w') as tok_file:
             json.dump(self.auth_data, tok_file)
+
+    def make_refresh(self):
+        response = self.post(URL_REFRESH_TOKEN, json={"refresh": self.auth_data.get("access")})
+        self.dump_token(response=response)
+    
+    def refresh_token(self):
+        if 'Authorization' in self.headers:
+            del self.headers['Authorization']
+        response = self.post(URL_REFRESH_TOKEN, json={"refresh": self.auth_data.get("refresh")})
+        self.dump_token(response=response)
 
     def update_balance(self):
         logging.info("Обновление баланса")
